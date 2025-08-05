@@ -1,0 +1,52 @@
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
+public class BallGame extends Frame implements MouseMotionListener {
+
+    int circlex = 200, circley = 200, circleradius = 20;
+
+    BallGame() {
+        setLayout(null);
+        setSize(300, 300);
+        setVisible(true);
+        setTitle("Catch me if you can!");
+        addMouseMotionListener(this);
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setColor(Color.BLUE);
+        g.fillOval(circlex, circley, 2 * circleradius, 2 * circleradius);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+
+        if (x < circlex + circleradius) {
+            circlex++;
+        }
+        if (x > circlex + circleradius) {
+            circlex--;
+        }
+        if (y < circley + circleradius) {
+            circley++;
+        }
+        if (y > circley + circleradius) {
+            circley--;
+        }
+
+        repaint();
+    }
+
+    public static void main(String[] args) {
+        new BallGame();
+    }
+}
